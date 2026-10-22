@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>დავითის სამეფო - სადღესასწაულო დარბაზი & რესტორანი</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- QR Code Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --gold-primary: #C5A059;
+      --gold-dark: #A37F3F;
+      --gold-light: #DFCA97;
+      --gold-soft: #F7F2E8;
+      
+      --cream-bg: #FDFBF7;
+      --cream-card: #FFFFFF;
+      
+      --text-main: #2C2621;
+      --text-muted: #6E665E;
+      --border-color: #E8E2D5;
+      
+      --burgundy-accent: #671D28;
+      
+      --font-heading: 'Marcellus', 'Noto Sans Georgian', serif;
+      --font-body: 'Noto Sans Georgian', sans-serif;
+      --shadow-soft: 0 10px 30px rgba(197, 160, 89, 0.12);
+      --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--cream-bg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 0.9rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+    }
+
+    .nav-title {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-primary);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--gold-primary);
+      color: var(--gold-dark);
+      padding: 0.65rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold-soft);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 75px;
+      padding: 4.5rem 2rem 3.5rem;
+      background: linear-gradient(180deg, #FAF5EA 0%, var(--cream-bg) 100%);
+      text-align: center;
+    }
+
+    .hero-crown {
+      color: var(--gold-primary);
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.2rem;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--gold-dark);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .hero-location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-soft);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: var(--cream-card);
+      padding: 1.2rem 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border-color);
+      min-width: 170px;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      font-family: var(--font-heading);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Section Global Styles */
+    .section {
+      padding: 4.5rem 2rem;
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-subtitle {
+      color: var(--gold-dark);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--text-main);
+    }
+
+    /* Booking Form Section */
+    .booking-container {
+      background: var(--cream-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-soft);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      background: var(--cream-bg);
+      color: var(--text-main);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold-primary);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+    }
+
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-card {
+      background: var(--cream-card);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-card);
+    }
+
+    .gallery-svg-wrap {
+      height: 220px;
+      background: var(--gold-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-info {
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .gallery-info h4 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+
+    .gallery-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Rules / Accordion Section */
+    .accordion {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .accordion-item {
+      background: var(--cream-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .accordion-header {
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .accordion-header:hover {
+      background: var(--gold-soft);
+    }
+
+    .accordion-content {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease-out;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .accordion-item.active .accordion-content {
+      padding: 1rem 1.5rem 1.5rem;
+      max-height: 300px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* QR Code Section */
+    .qr-box {
+      background: linear-gradient(135deg, #FAF5EA, #FFF);
+      border: 2px dashed var(--gold-primary);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-soft);
+    }
+
+    #qrcode {
+      display: inline-block;
+      margin: 1.5rem 0;
+      padding: 12px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Footer / Contact */
+    .footer {
+      background: #231E1A;
+      color: #E2DDD5;
+      padding: 4rem 2rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-heading);
+      color: var(--gold-primary);
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 1rem;
+      color: #CCC6BD;
+    }
+
+    .contact-item i {
+      color: var(--gold-primary);
+      margin-top: 4px;
+    }
+
+    .contact-item a {
+      color: #EEE8DF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #3A332C;
+      font-size: 0.85rem;
+      color: #8C847A;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.2rem; }
+      .booking-container { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo-icon">
+        <i class="fa-solid fa-crown"></i>
+      </div>
+      <span class="nav-title">დავითის სამეფო</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">ჩვენ შესახებ</a></li>
+      <li><a href="#booking">დაჯავშნა</a></li>
+      <li><a href="#gallery">გალერეა</a></li>
+      <li><a href="#rules">წესები</a></li>
+      <li><a href="#qr">QR კოდი</a></li>
+    </ul>
+
+    <div>
+      <a href="tel:593033222" class="btn-gold">
+        <i class="fa-solid fa-phone"></i> 593 03 32 22
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="hero-crown">
+      <i class="fa-solid fa-crown"></i>
+    </div>
+    <h1 class="hero-title">დავითის სამეფო</h1>
+    <p class="hero-subtitle">სადღესასწაულო დარბაზი & რესტორანი</p>
+
+    <div class="hero-location-badge">
+      <i class="fa-solid fa-location-dot" style="color:var(--gold-dark);"></i>
+      <span>სამტრედია, რობაქიძის ქუჩა N67</span>
+    </div>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="#booking" class="btn-gold">
+        <i class="fa-solid fa-calendar-check"></i> ონლაინ დაჯავშნა
+      </a>
+      <a href="https://maps.google.com/?q=Samtredia,Robakidze+street+67" target="_blank" class="btn-outline">
+        <i class="fa-solid fa-map-location-dot"></i> რუკაზე ნახვა
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">400</div>
+        <div class="stat-label">სტუმრის ტევადობა</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">VIP</div>
+        <div class="stat-label">მომსახურება</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">დაუვიწყარი გარემო</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="section" id="booking">
+    <div class="section-header">
+      <div class="section-subtitle">თარიღის დაჯავშნა</div>
+      <h2 class="section-title">ონლაინ რეზერვაცია</h2>
+    </div>
+
+    <div class="booking-container">
+      <form id="reservationForm" onsubmit="handleBooking(event)">
+        <div class="booking-grid">
+          <div class="form-group">
+            <label for="fullName">სახელი და გვარი *</label>
+            <input type="text" id="fullName" required placeholder="მაგ: გიორგი ბერიძე">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">ტელეფონის ნომერი *</label>
+            <input type="tel" id="phone" required placeholder="5XX XX XX XX">
+          </div>
+
+          <div class="form-group">
+            <label for="eventDate">ღონისძიების თარიღი *</label>
+            <input type="date" id="eventDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventType">ღონისძიების ტიპი</label>
+            <select id="eventType">
+              <option value="ქორწილი">ქორწილი</option>
+              <option value="იუბილე / დაბადების დღე">იუბილე / დაბადების დღე</option>
+              <option value="კორპორატიული">კორპორატიული წვეულება</option>
+              <option value="სხვა">სხვა სადღესასწაულო ღონისძიება</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="guests">სტუმრების რაოდენობა (მაქს. 400)</label>
+            <input type="number" id="guests" min="10" max="400" placeholder="მაგ: 150">
+          </div>
+
+          <div class="form-group">
+            <label for="notes">დამატებითი სურვილები</label>
+            <input type="text" id="notes" placeholder="მაგ: დეკორაცია, ცოცხალი მუსიკა...">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">
+          <i class="fa-solid fa-paper-plane"></i> დაჯავშნის მოთხოვნის გაგზავნა
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section" id="gallery">
+    <div class="section-header">
+      <div class="section-subtitle">ინტერიერი & გარემო</div>
+      <h2 class="section-title">ფოტოგალერეა</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <div class="gallery-svg-wrap">
+          <svg viewBox="0 0 300 200" width="100%" height="100%">
+            <rect width="300" height="200" fill="#F7F2E8"/>
+            <circle cx="150" cy="90" r="40" fill="#C5A059" opacity="0.6"/>
+            <text x="150" y="160" font-family="'Noto Sans Georgian', sans-serif" font-size="14" fill="#2C2621" text-anchor="middle" font-weight="600">მთავარი დარბაზი</text>
+          </svg>
+        </div>
+        <div class="gallery-info">
+          <h4>მთავარი დარბაზი</h4>
+          <p>გათვლილია 400 პერსონამდე</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-svg-wrap">
+          <svg viewBox="0 0 300 200" width="100%" height="100%">
+            <rect width="300" height="200" fill="#FAF5EA"/>
+            <rect x="75" y="50" width="150" height="90" rx="10" fill="#DFCA97" opacity="0.7"/>
+            <text x="150" y="160" font-family="'Noto Sans Georgian', sans-serif" font-size="14" fill="#2C2621" text-anchor="middle" font-weight="600">პრეზიდიუმის მაგიდა</text>
+          </svg>
+        </div>
+        <div class="gallery-info">
+          <h4>სადღესასწაულო დეკორი</h4>
+          <p>პატარძლისა და იუბილარის ზონა</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-svg-wrap">
+          <svg viewBox="0 0 300 200" width="100%" height="100%">
+            <rect width="300" height="200" fill="#F7F2E8"/>
+            <polygon points="150,40 190,120 110,120" fill="#A37F3F" opacity="0.7"/>
+            <text x="150" y="160" font-family="'Noto Sans Georgian', sans-serif" font-size="14" fill="#2C2621" text-anchor="middle" font-weight="600">ფასადი & ეზო</text>
+          </svg>
+        </div>
+        <div class="gallery-info">
+          <h4>ექსტერიერი</h4>
+          <p>თანამედროვე ფასადი და ეზო</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules Section -->
+  <section class="section" id="rules">
+    <div class="section-header">
+      <div class="section-subtitle">ინფორმაცია სტუმრებისთვის</div>
+      <h2 class="section-title">წესები & პირობები</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item active">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><i class="fa-solid fa-calendar-days" style="color:var(--gold-primary); margin-right: 8px;"></i> დაჯავშნა და დეპოზიტი</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+          თარიღის საბოლოო დაჯავშნისთვის საჭიროა წინასწარი შეთანხმება და დეპოზიტის შეტანა. დეტალებისთვის დაგვიკავშირდით: 593-033-222 ან 555-580-810.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><i class="fa-solid fa-users" style="color:var(--gold-primary); margin-right: 8px;"></i> ტევადობა</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+          დარბაზი მაქსიმალურად მასპინძლობს 400 სტუმარს. სივრცე მოწყობილია ფართო საცეკვაო მოედნითა და კომფორტული განლაგებით.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QR Code Section -->
+  <section class="section" id="qr">
+    <div class="qr-box">
+      <h3 style="font-family: var(--font-heading); font-size: 1.7rem; margin-bottom: 0.5rem;">
+        გააზიარეთ გვერდი QR კოდით
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        დასკანერებისას მომხმარებელი პირდაპირ გადავა ამ საიტზე
+      </p>
+
+      <div id="qrcode"></div>
+
+      <div>
+        <button class="btn-gold" onclick="downloadQR()">
+          <i class="fa-solid fa-download"></i> QR კოდის ჩამოტვირთვა
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>დავითის სამეფო</h3>
+        <p style="color: #999; font-size: 0.9rem;">
+          სადღესასწაულო დარბაზი & რესტორანი — თქვენი დაუვიწყარი დღესასწაულის სამეფო სივრცე.
+        </p>
+      </div>
+
+      <div>
+        <h4 style="color: #FFF; margin-bottom: 1rem;">კონტაქტი</h4>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <a href="tel:593033222">593 03 32 22</a> <br>
+            <a href="tel:555580810">555 58 08 10</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>სამტრედია, რობაქიძის ქუჩა N67</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color: #FFF; margin-bottom: 1rem;">სამუშაო საათები</h4>
+        <p style="color: #AAA; font-size: 0.9rem;">ორშაბათი - კვირა: 10:00 - 00:00</p>
+        <p style="color: #AAA; font-size: 0.9rem; margin-top: 0.4rem;">ჯავშნები მიიღება ყოველდღე</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 დავითის სამეფო. ყველა უფლება დაცულია.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion Toggle
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+
+    // Handle Online Booking Submission
+    function handleBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value;
+      const phone = document.getElementById('phone').value;
+      const date = document.getElementById('eventDate').value;
+      const type = document.getElementById('eventType').value;
+      const guests = document.getElementById('guests').value || 'მითითებული არ არის';
+      const notes = document.getElementById('notes').value || 'არ არის';
+
+      const msg = `გამარჯობა, მინდა თარიღის დაჯავშნა "დავითის სამეფოში":\n\n👤 სახელი: ${name}\n📞 ტელეფონი: ${phone}\n📅 თარიღი: ${date}\n🎉 ღონისძიება: ${type}\n👥 სტუმრები: ${guests}\n📝 შენიშვნა: ${notes}`;
+
+      // Open WhatsApp or phone confirmation
+      const encodedMsg = encodeURIComponent(msg);
+      window.open(`https://wa.me/995593033222?text=${encodedMsg}`, '_blank');
+    }
+
+    // Auto Generate QR Code
+    window.addEventListener('DOMContentLoaded', () => {
+      new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 150,
+        height: 150,
+        colorDark: "#2C2621",
+        colorLight: "#FFFFFF",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    });
+
+    // Download QR Code
+    function downloadQR() {
+      const img = document.querySelector('#qrcode img');
+      if (img) {
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.download = 'davitis-samefo-qr.png';
+        link.click();
+      }
+    }
+  </script>
+</body>
+</html>
